@@ -4,8 +4,8 @@ const galleryRef = document.querySelector('.js-gallery');
 const lightboxRef = document.querySelector('.js-lightbox');
 const lightboxImageRef = document.querySelector('.lightbox__content > .lightbox__image');
 const closeModalBtnRef = document.querySelector('button[data-action="close-lightbox"]');
-
-
+const lightboxOverlayRef = document.querySelector('.js-lightbox > .lightbox__overlay');
+// const bodyRef = document.querySelector('body');
 
 const createGalleryItem = (items) => {
   return items.map(({ preview, original, description }) => {
@@ -29,7 +29,7 @@ const openModal = e => {
   }
   e.preventDefault();
   lightboxRef.classList.add('is-open');
-  lightboxImageRef.src = `${e.target.dataset.source}`
+  lightboxImageRef.src = e.target.dataset.source
 
 };
 const closeModal = () => { 
@@ -37,18 +37,18 @@ const closeModal = () => {
   lightboxImageRef.src = undefined;
 };
 
-
+// const escCloseModal = e => { 
+//   if (e.keyCode !== 27) {
+//   return
+//   }
+//   lightboxRef.classList.remove('is-open')
+//   lightboxImageRef.src = undefined;
+// }
 
 const createMarkup = createGalleryItem(itemList);
 
-
+// document.addEventListener('keypress', escCloseModal)
 galleryRef.insertAdjacentHTML('beforeend', createMarkup);
-closeModalBtnRef.addEventListener('click', closeModal)
 galleryRef.addEventListener('click', openModal)
-
-      // Модальное окно для полноразмерного изображения
-      // Для того чтобы открыть, необходимо добавить на div.lightbox CSS-класс is-open
-    //  = itemList.original
-
-    
-// Подмена значения атрибута src элемента img.lightbox__image.
+closeModalBtnRef.addEventListener('click', closeModal)
+lightboxOverlayRef.addEventListener('click', closeModal)
