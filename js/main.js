@@ -13,8 +13,6 @@ const createGalleryItem = (items) => {
     <a
     class="gallery__link"
     href='${original}'
-    target='_blank'
-    rel="nofollow noopener"
   >
   <img
   class="gallery__image"
@@ -29,6 +27,7 @@ const openModal = e => {
   if (e.target.nodeName !== 'IMG') {
     return;
   }
+  e.preventDefault();
   lightboxRef.classList.add('is-open');
   lightboxImageRef.src = `${e.target.dataset.source}`
 
