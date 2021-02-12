@@ -19,11 +19,14 @@ const createGalleryItem = items => {
   src='${preview}'
   data-source="${original}"
   alt="${description}"
+  width = 480
+  height = 240
+  loading = "lazy"
   />
   </a>
   </li>`}).join(' ')
 };
-const openModal = e => { 
+const onOpenModalBtnCLick = e => { 
   if (e.target.nodeName !== 'IMG') {
     return;
   }
@@ -32,7 +35,7 @@ const openModal = e => {
   lightboxImageRef.src = e.target.dataset.source
 
 };
-const closeModal = () => { 
+const onCloseModalBtnClick = () => { 
   lightboxRef.classList.remove('is-open')
   lightboxImageRef.src = undefined;
 };
@@ -49,6 +52,6 @@ const createMarkup = createGalleryItem(itemList);
 
 // document.addEventListener('keypress', escCloseModal)
 galleryRef.insertAdjacentHTML('beforeend', createMarkup);
-galleryRef.addEventListener('click', openModal)
-closeModalBtnRef.addEventListener('click', closeModal)
-lightboxOverlayRef.addEventListener('click', closeModal)
+galleryRef.addEventListener('click', onOpenModalBtnCLick)
+closeModalBtnRef.addEventListener('click', onCloseModalBtnClick)
+lightboxOverlayRef.addEventListener('click', onCloseModalBtnClick)
