@@ -7,7 +7,7 @@ const closeModalBtnRef = document.querySelector('button[data-action="close-light
 const lightboxOverlayRef = document.querySelector('.js-lightbox > .lightbox__overlay');
 // const bodyRef = document.querySelector('body');
 
-const createGalleryItem = (items) => {
+const createGalleryItem = items => {
   return items.map(({ preview, original, description }) => {
     return `<li class="gallery__item">
     <a
