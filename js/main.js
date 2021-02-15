@@ -5,7 +5,7 @@ const lightboxRef = document.querySelector('.js-lightbox');
 const lightboxImageRef = document.querySelector('.lightbox__content > .lightbox__image');
 const closeModalBtnRef = document.querySelector('button[data-action="close-lightbox"]');
 const lightboxOverlayRef = document.querySelector('.js-lightbox > .lightbox__overlay');
-// const bodyRef = document.querySelector('body');
+const bodyRef = document.querySelector('body');
 
 const createGalleryItem = items => {
   return items.map(({ preview, original, description }) => {
@@ -40,17 +40,17 @@ const onCloseModalBtnClick = () => {
   lightboxImageRef.src = undefined;
 };
 
-// const escCloseModal = e => { 
-//   if (e.keyCode !== 27) {
-//   return
-//   }
-//   lightboxRef.classList.remove('is-open')
-//   lightboxImageRef.src = undefined;
-// }
+const escCloseModal = e => { 
+  if (e.keyCode !== 27) {
+  return
+  }
+  lightboxRef.classList.remove('is-open')
+  lightboxImageRef.src = undefined;
+}
 
 const createMarkup = createGalleryItem(itemList);
 
-// document.addEventListener('keypress', escCloseModal)
+document.addEventListener('keydown', escCloseModal)
 galleryRef.insertAdjacentHTML('beforeend', createMarkup);
 galleryRef.addEventListener('click', onOpenModalBtnCLick)
 closeModalBtnRef.addEventListener('click', onCloseModalBtnClick)
