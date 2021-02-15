@@ -62,7 +62,7 @@ const onLeftArrowBtnKeydown = e => {
   if (activeIndex === 0) { 
     return
   }
-  activeIndex -=1
+  activeIndex = Number(activeIndex) -1 ;
   lightboxImageRef.src = itemList[activeIndex].original
   
 }
@@ -76,12 +76,28 @@ const onRightArrowBtnKeydown = e => {
   if (activeIndex === itemList.length - 1) { 
     return
   }
-  activeIndex +=1
+  activeIndex = Number(activeIndex) +1
   lightboxImageRef.src = itemList[activeIndex].original
+  lightboxImageRef.alt = itemList[activeIndex].description
   
 }
+const onModalImgClick = e => { 
+  if (!lightboxRef.classList.contains('is-open')) {
+    return
+  }
+  if (activeIndex === itemList.length - 1) { 
+    return
+  }
+  
+  activeIndex = Number(activeIndex) +1
+  lightboxImageRef.src = itemList[activeIndex].original
+  lightboxImageRef.alt = itemList[activeIndex].description
+
+}
+
 
 const createMarkup = createGalleryItem(itemList);
+galleryRef.insertAdjacentHTML('beforeend', createMarkup);
 
 bodyRef.addEventListener('keydown', onEscKeydown)
 bodyRef.addEventListener('keydown', onLeftArrowBtnKeydown)
@@ -90,5 +106,4 @@ bodyRef.addEventListener('keydown', onRightArrowBtnKeydown)
 galleryRef.addEventListener('click', onOpenModalBtnCLick)
 closeModalBtnRef.addEventListener('click', onCloseModalBtnClick)
 lightboxOverlayRef.addEventListener('click', onCloseModalBtnClick)
-
-galleryRef.insertAdjacentHTML('beforeend', createMarkup);
+lightboxImageRef.addEventListener('click', onModalImgClick)
