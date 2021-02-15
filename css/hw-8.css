@@ -25,6 +25,9 @@ body {
   color: #212121;
 }
 
+body > .js-lightbox.is-open {
+}
+
 .gallery {
   display: grid;
   width: 1200px;
