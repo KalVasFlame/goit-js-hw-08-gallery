@@ -28,7 +28,7 @@ const createGalleryItem = items => {
 };
 
 
-export const onOpenModalBtnCLick = e => { 
+const onOpenModalBtnCLick = e => { 
   if (e.target.nodeName !== 'IMG') {
     return;
   }
@@ -38,11 +38,11 @@ export const onOpenModalBtnCLick = e => {
   lightboxImageRef.alt = e.target.alt;
   
 };
-export const onCloseModalBtnClick = () => { 
+const onCloseModalBtnClick = () => { 
   lightboxRef.classList.remove('is-open')
   lightboxImageRef.src = undefined;
 };
-export const onEscKeydown = e => { 
+const onEscKeydown = e => { 
   if (e.keyCode !== 27) {
   return
   }
