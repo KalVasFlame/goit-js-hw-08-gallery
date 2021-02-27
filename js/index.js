@@ -28,27 +28,32 @@ const createGalleryItem = items => {
 };
 
 
+const changeSettings = e => {
+  lightboxImageRef.src = e.target.dataset.source;
+  lightboxImageRef.alt = e.target.alt
+}
+
 const onOpenModalBtnCLick = e => { 
   if (e.target.nodeName !== 'IMG') {
     return;
   }
   e.preventDefault();
   lightboxRef.classList.add('is-open');
-  lightboxImageRef.src = e.target.dataset.source;
-  lightboxImageRef.alt = e.target.alt;
+  changeSettings(e)
   
 };
-const onCloseModalBtnClick = () => { 
+const onCloseModalBtnClick = (e) => { 
   lightboxRef.classList.remove('is-open')
-  lightboxImageRef.src = undefined;
+  changeSettings(e)
 };
 const onEscKeydown = e => { 
   if (e.keyCode !== 27) {
   return
   }
   lightboxRef.classList.remove('is-open')
-  lightboxImageRef.src = undefined;
+  changeSettings(e)
 }
+
 
 
 
